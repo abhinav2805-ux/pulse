@@ -3,7 +3,7 @@ import { Button } from './ui/button'
 import Link from 'next/link'
 function Navbar() {
   return (
-    <nav className="bg-blue-600 text-white shadow-md">
+    <nav className="bg-blue-800 text-white shadow-md">
         <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className=" items-center mb-2 md:mb-0 flex flex-col">
             <Link href="/" className="font-bold text-xl">Pulse-O-Meter</Link>
