@@ -46,7 +46,7 @@ const teamMembers = [
     image: "",
     social: {
       linkedin: "https://www.linkedin.com/in/shruti-agarwal-b99054263/",
-      github: "https://github.com/sarahbrown"
+      github: "https://github.com/SHRUTIAGARWAL21"
     }
   },
   {
