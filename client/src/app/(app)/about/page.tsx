@@ -1,0 +1,146 @@
+import React from 'react';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import Image from 'next/image';
+
+const teamMembers = [
+  {
+    name: "Ashwin Bansal",
+    role: "Team Leader and Full Stack Developer",
+    image: "",
+    social: {
+      linkedin: "https://www.linkedin.com/in/ashwin-bansal-5b5a70257/",
+      github: "https://github.com/Ashwin1902",
+    }
+  },
+  {
+    name: "Ansh Jain",
+    role: "Full Stack Developer",
+    image: "",
+    social: {
+      linkedin: "https://www.linkedin.com/in/ansh-jain-78986b242/",
+      github: "https://github.com/AnshJain9159",
+    }
+  },
+  {
+    name: "Abhinav Gupta",
+    role: "Full Stack Developer",
+    image: "",
+    social: {
+      linkedin: "https://www.linkedin.com/in/abhinav-gupta-b3317128a/",
+      github: "https://github.com/abhinav2805-ux"
+    }
+  },
+  {
+    name: "Ujjwal Gupta",
+    role: "Machine Learning Engineer",
+    image: "",
+    social: {
+      linkedin: "https://www.linkedin.com/in/ujjwal-gupta-67061b256/",
+      github: "https://github.com/Ujjwagupta1302",
+    }
+  },
+  {
+    name: "Shruti Aggarwal",
+    role: "UI/UX Designer and Frontend Developer",
+    image: "",
+    social: {
+      linkedin: "https://www.linkedin.com/in/shruti-agarwal-b99054263/",
+      github: "https://github.com/sarahbrown"
+    }
+  },
+  {
+    name: "Pranav Aggarwal",
+    role: "Machine Learning Engineer",
+    image: "",
+    social: {
+      linkedin: "https://www.linkedin.com/in/pranav-aggarwal-3628ba293/",
+      github: "https://github.com/davidlee",
+    }
+  }
+];
+
+const AboutUs = () => {
+  return (
+    <div className="bg-white py-12">
+      <div className="container mx-auto px-4">
+        <h1 className="text-4xl font-bold text-center mb-8 ">Pulse-O-Meter</h1>
+        
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Our Vision</h2>
+          <p className="text-gray-700">
+            At Pulse-O-Meter, we envision a future where advanced AI and ML technologies enhance the stability and efficiency of India&apos;s agricultural commodity markets. Our goal is to provide the Department of Consumer Affairs with cutting-edge predictive tools, empowering them to make data-driven decisions that benefit farmers, consumers, and the overall economy.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">The Problem We&apos;re Solving</h2>
+          <p className="text-gray-700">
+            The Department of Consumer Affairs monitors daily prices of 22 essential food commodities across 550 centers in India. They maintain buffer stocks of pulses and onions to stabilize price volatility through strategic market interventions. Currently, price analyses rely on seasonality, historical trends, market intelligence, and crop estimates. While ARIMA models have been used for pulses, there&apos;s a need for more advanced, comprehensive predictive models. Pulse-O-Meter addresses this gap by developing AI-ML based models for accurate price predictions of agri-horticultural commodities, particularly focusing on pulses and vegetables like onion and potato.
+          </p>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Our Approach</h2>
+          <p className="text-gray-700">
+            We&apos;re developing state-of-the-art AI-ML models to predict prices of agri-horticultural commodities:
+          </p>
+          <ul className="list-disc list-inside mt-4 text-gray-700">
+            <li>Utilizing advanced machine learning algorithms that go beyond traditional ARIMA models</li>
+            <li>Incorporating a wide range of factors including historical price data, seasonality, crop sowing and production estimates, and market intelligence inputs</li>
+            <li>Developing separate models for different commodity categories (pulses, onions, potatoes) to capture their unique market dynamics</li>
+            <li>Creating a user-friendly interface for the Department of Consumer Affairs to access predictions and insights easily</li>
+            <li>Implementing continuous model refinement based on new data and feedback from the Department</li>
+          </ul>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Meet Our Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
+                <Image src={member.image} width={32} height={32} alt={member.name} className="rounded-full mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-center">{member.name}</h3>
+                <p className="text-gray-600 text-center mb-2">{member.role}</p>
+                <div className="flex justify-center space-x-4">
+                  {member.social.linkedin && (
+                    <a title='linkedin' href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                      <LinkedInIcon size={20} />
+                    </a>
+                  )}
+                  {member.social.github && (
+                    <a title='github' href={member.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-black">
+                      <GitHubIcon size={20} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-semibold mb-4">Our Impact</h2>
+          <p className="text-gray-700">
+            While Pulse-O-Meter is still in development, our goal is to achieve the following impacts:
+          </p>
+          <ul className="list-disc list-inside mt-4 text-gray-700">
+            <li>Provide more accurate and timely price predictions for 22 essential food commodities</li>
+            <li>Enable better-informed decisions on buffer stock management and market interventions</li>
+            <li>Contribute to the stabilization of food commodity prices in India</li>
+            <li>Support the Department of Consumer Affairs in enhancing food security and market efficiency</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Get Involved</h2>
+          <ul className="list-disc list-inside mt-4 text-gray-700">
+            <li>Check out our project on <a href="https://github.com/AnshJain9159/pulse" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">GitHub</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  );
+};
+
+export default AboutUs;
