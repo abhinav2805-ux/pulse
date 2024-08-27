@@ -1,87 +1,46 @@
-import React from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Image from 'next/image';
+import TypingAnimation from '@/components/magicui/typing-animation';
+import teamMembers from '@/constants/team';
 
-const teamMembers = [
-  {
-    name: "Ashwin Bansal",
-    role: "Team Leader and Full Stack Developer",
-    image: "",
-    social: {
-      linkedin: "https://www.linkedin.com/in/ashwin-bansal-5b5a70257/",
-      github: "https://github.com/Ashwin1902",
-    }
-  },
-  {
-    name: "Ansh Jain",
-    role: "Full Stack Developer",
-    image: "",
-    social: {
-      linkedin: "https://www.linkedin.com/in/ansh-jain-78986b242/",
-      github: "https://github.com/AnshJain9159",
-    }
-  },
-  {
-    name: "Abhinav Gupta",
-    role: "Full Stack Developer",
-    image: "",
-    social: {
-      linkedin: "https://www.linkedin.com/in/abhinav-gupta-b3317128a/",
-      github: "https://github.com/abhinav2805-ux"
-    }
-  },
-  {
-    name: "Ujjwal Gupta",
-    role: "Machine Learning Engineer",
-    image: "",
-    social: {
-      linkedin: "https://www.linkedin.com/in/ujjwal-gupta-67061b256/",
-      github: "https://github.com/Ujjwagupta1302",
-    }
-  },
-  {
-    name: "Shruti Aggarwal",
-    role: "UI/UX Designer and Frontend Developer",
-    image: "",
-    social: {
-      linkedin: "https://www.linkedin.com/in/shruti-agarwal-b99054263/",
-      github: "https://github.com/SHRUTIAGARWAL21"
-    }
-  },
-  {
-    name: "Pranav Aggarwal",
-    role: "Machine Learning Engineer",
-    image: "",
-    social: {
-      linkedin: "https://www.linkedin.com/in/pranav-aggarwal-3628ba293/",
-      github: "https://github.com/davidlee",
-    }
-  }
-];
+
+
 
 const AboutUs = () => {
   return (
-    <div className="bg-white py-12">
+    <div className="bg-white py-12 mt-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-8 ">Pulse-O-Meter</h1>
         
+        <TypingAnimation
+        className="text-4xl font-bold text-black text-center dark:text-white"
+        text="HARVESTRA"
+        />
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Our Vision</h2>
+          <TypingAnimation
+          className="text-2xl font-semibold mb-4 text-black text-left dark:text-white"
+          text="Our Vision"
+          />
           <p className="text-gray-700">
-            At Pulse-O-Meter, we envision a future where advanced AI and ML technologies enhance the stability and efficiency of India&apos;s agricultural commodity markets. Our goal is to provide the Department of Consumer Affairs with cutting-edge predictive tools, empowering them to make data-driven decisions that benefit farmers, consumers, and the overall economy.
+            At Harvestra, we envision a future where advanced AI and ML technologies enhance the stability and efficiency of India&apos;s agricultural commodity markets. Our goal is to provide the Department of Consumer Affairs with cutting-edge predictive tools, empowering them to make data-driven decisions that benefit farmers, consumers, and the overall economy.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">The Problem We&apos;re Solving</h2>
+        <TypingAnimation
+          className="text-2xl font-semibold mb-4 text-black text-left dark:text-white"
+          text="The Problem We're Solving"
+          />
           <p className="text-gray-700">
-            The Department of Consumer Affairs monitors daily prices of 22 essential food commodities across 550 centers in India. They maintain buffer stocks of pulses and onions to stabilize price volatility through strategic market interventions. Currently, price analyses rely on seasonality, historical trends, market intelligence, and crop estimates. While ARIMA models have been used for pulses, there&apos;s a need for more advanced, comprehensive predictive models. Pulse-O-Meter addresses this gap by developing AI-ML based models for accurate price predictions of agri-horticultural commodities, particularly focusing on pulses and vegetables like onion and potato.
+            The Department of Consumer Affairs monitors daily prices of 22 essential food commodities across 550 centers in India. They maintain buffer stocks of pulses and onions to stabilize price volatility through strategic market interventions. Currently, price analyses rely on seasonality, historical trends, market intelligence, and crop estimates. While ARIMA models have been used for pulses, there&apos;s a need for more advanced, comprehensive predictive models. Harvestra addresses this gap by developing AI-ML based models for accurate price predictions of agri-horticultural commodities, particularly focusing on pulses and vegetables like onion and potato.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Our Approach</h2>
+          <TypingAnimation
+          className="text-2xl font-semibold mb-4 text-black text-left dark:text-white"
+          text="Our Approach"
+          />          
           <p className="text-gray-700">
             We&apos;re developing state-of-the-art AI-ML models to predict prices of agri-horticultural commodities:
           </p>
@@ -95,7 +54,10 @@ const AboutUs = () => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Meet Our Team</h2>
+        <TypingAnimation
+          className="text-2xl font-semibold mb-4 text-black text-left dark:text-white"
+          text="Meet Our Team"
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
@@ -114,15 +76,19 @@ const AboutUs = () => {
                     </a>
                   )}
                 </div>
+                
               </div>
             ))}
           </div>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Our Impact</h2>
+        <TypingAnimation
+          className="text-2xl font-semibold mb-4 text-black text-left dark:text-white"
+          text="Our Impact"
+          />
           <p className="text-gray-700">
-            While Pulse-O-Meter is still in development, our goal is to achieve the following impacts:
+            While Harvestra is still in development, our goal is to achieve the following impacts:
           </p>
           <ul className="list-disc list-inside mt-4 text-gray-700">
             <li>Provide more accurate and timely price predictions for 22 essential food commodities</li>

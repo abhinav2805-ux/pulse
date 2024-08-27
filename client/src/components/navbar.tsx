@@ -1,10 +1,22 @@
-"use client"; 
-import React, { useState } from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+
+  // agar scroll hogya y axis pr 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleSidebar = (): void => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -15,66 +27,67 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-blue-600 text-white shadow-md">
-      <div className="container mx-auto px-6 py-3 flex justify-between items-center">
-        <div className="items-center mb-2 md:mb-0 flex flex-col">
-          <Link href="/" className="font-bold text-xl">
-            Pulse-O-Meter
-          </Link>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white text-blue-800 shadow-md' : 'bg-transparent text-black'
+    }`}>
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <Link href="/" className="font-bold text-xl transition-colors duration-300">
+          Harvestra
+        </Link>
+        <div className="hidden md:flex space-x-1">
+          {['Home', 'Features', 'Contact', 'About Us'].map((item) => (
+            <Link 
+              key={item} 
+              href={`/${item.toLowerCase().replace(' ', '-')}`} 
+              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 hover:text-white transition-colors duration-300"
+            >
+              {item}
+            </Link>
+          ))}
         </div>
-        <div className="hidden md:flex space-x-4">
-          <Link href="/" className="hover:text-blue-200 transition-colors duration-300">
-            <Button variant={'ghost'}>Home</Button>
-          </Link>
-          <Link href="/features" className="hover:text-blue-200 transition-colors duration-300">
-            <Button variant={'ghost'}>Features</Button>
-          </Link>
-          <Link href="/contact" className="hover:text-blue-200 transition-colors duration-300">
-            <Button variant={'ghost'}>Contact</Button>
-          </Link>
-          <Link href="/about" className="hover:text-blue-200 transition-colors duration-300">
-            <Button variant={'ghost'}>About Us</Button>
-          </Link>
-        </div>
-        <button onClick={toggleSidebar} title="Toggle Sidebar" className="md:hidden focus:outline-none">
-          <svg className="h-6 w-6 fill-current text-white" viewBox="0 0 24 24">
+        <Button 
+          onClick={toggleSidebar} 
+          className="md:hidden focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-md p-2"
+          aria-label="Toggle menu"
+        >
+          <svg className={`h-6 w-6 ${isScrolled ? 'text-blue-800' : 'text-white'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {isSidebarOpen ? (
-              <path d="M6 6L18 18M18 6L6 18" /> // White X icon when sidebar is open
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (
-              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" /> // Hamburger icon when sidebar is closed
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             )}
           </svg>
-        </button>
+        </Button>
       </div>
 
-      {/* Sidebar */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-blue-700 shadow-lg transform ${
-          isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
-        } transition-transform duration-300 ease-in-out`}
-      >
-        <div className="flex justify-end p-4">
-          <button onClick={toggleSidebar} title="Close Sidebar" className="focus:outline-none">
-            <svg className="h-6 w-6 fill-current text-white" viewBox="0 0 24 24">
-              <path d="M6 6L18 18M18 6L6 18" /> // White X icon for closing sidebar
-            </svg>
-          </button>
+      {isSidebarOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={closeSidebar}>
+          <div 
+            className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-0 transition-transform duration-300 ease-in-out z-50"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-end p-4">
+              <Button onClick={closeSidebar} className="focus:outline-none focus:ring-2 focus:ring-blue-600 rounded-md p-2">
+                <svg className="h-6 w-6 text-blue-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </Button>
+            </div>
+            <nav className="flex flex-col space-y-4 p-4">
+              {['Home', 'Features', 'Contact', 'about'].map((item) => (
+                <Link 
+                  key={item}
+                  href={`/${item.toLowerCase().replace(' ', '-')}`} 
+                  className="text-blue-800 hover:bg-blue-100 px-3 py-2 rounded-md transition-colors duration-300" 
+                  onClick={closeSidebar}
+                >
+                  {item}
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
-        <nav className="flex flex-col space-y-4 p-4">
-          <Link href="/" className="text-white hover:text-blue-200" onClick={closeSidebar}>
-            Home
-          </Link>
-          <Link href="/features" className="text-white hover:text-blue-200" onClick={closeSidebar}>
-            Features
-          </Link>
-          <Link href="/contact" className="text-white hover:text-blue-200" onClick={closeSidebar}>
-            Contact
-          </Link>
-          <Link href="/about" className="text-white hover:text-blue-200" onClick={closeSidebar}>
-            About Us
-          </Link>
-        </nav>
-      </div>
+      )}
     </nav>
   );
 };

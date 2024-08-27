@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
-
+import Image from "next/image";
 const reviews = [
   {
     img: "/img1.png",
@@ -49,6 +49,7 @@ const ReviewCard = ({
           className="rounded-xl object-cover w-full h-full"
           alt=""
           src={img}
+          
         />
       </div>
     </figure>
