@@ -1,7 +1,7 @@
-import React from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Image from 'next/image';
+import TypingAnimation from '@/components/magicui/typing-animation';
 
 const teamMembers = [
   {
@@ -60,12 +60,18 @@ const teamMembers = [
   }
 ];
 
+
+
+
 const AboutUs = () => {
   return (
     <div className="bg-white py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-8 ">Pulse-O-Meter</h1>
         
+        <TypingAnimation
+        className="text-4xl font-bold text-black text-center dark:text-white"
+        text="Pulse-O-Meter"
+        />
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Our Vision</h2>
           <p className="text-gray-700">

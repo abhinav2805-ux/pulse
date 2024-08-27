@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-blue-600 text-white shadow-md">
+    <nav className="bg-blue-800 text-white shadow-md">
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         <div className="items-center mb-2 md:mb-0 flex flex-col">
           <Link href="/" className="font-bold text-xl">
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-end p-4">
           <button onClick={toggleSidebar} title="Close Sidebar" className="focus:outline-none">
             <svg className="h-6 w-6 fill-current text-white" viewBox="0 0 24 24">
-              <path d="M6 6L18 18M18 6L6 18" /> // White X icon for closing sidebar
+              <path d="M6 6L18 18M18 6L6 18" /> 
             </svg>
           </button>
         </div>

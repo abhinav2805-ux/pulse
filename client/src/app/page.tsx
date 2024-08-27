@@ -6,8 +6,9 @@ export default function Home() {
   return (
     <>
     <div className="min-h-screen">
+    <MarqueeDemo/>
+
     <Features></Features>
-       <MarqueeDemo/>
     </div>
    
     </>
