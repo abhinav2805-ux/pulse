@@ -7,12 +7,16 @@ import time
 import pickle
 import statsmodels
 import pandas as pd
+import os
+from dotenv import load_dotenv
 # import matplotlib.pyplot as plt
 # from matplotlib.animation import FuncAnimation
 # Define your API URL, city, and API key
+load_dotenv()
+
 api_url = "http://api.openweathermap.org/data/2.5/weather"
 city = "Delhi"
-api_key = "1031e82180981b48e6b9fba105594774"  # Replace with your actual API key
+api_key = os.getenv('WEATHER_API')  # Replace with your actual API key
 
 def get_temperature_and_humidity():
     """
