@@ -91,7 +91,7 @@ function Footer() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0 flex flex-col">
-              <span className="font-bold text-xl">Pulse-O-Meter</span>
+              <span className="font-bold text-xl">Harvestra</span>
               <p className="text-sm mt-2">Forecasting the future of food commodities</p>
             </div>
             
@@ -115,7 +115,7 @@ function Footer() {
           </div>
           <hr className='mt-4'/>
           <div className="mt-4 text-center text-sm">
-            &copy; {new Date().getFullYear()} Pulse-O-Meter. All rights reserved.
+            &copy; {new Date().getFullYear()} Harvestra. All rights reserved.
           </div>
         </div>
       </footer>
