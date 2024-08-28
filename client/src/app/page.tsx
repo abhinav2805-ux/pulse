@@ -4,13 +4,9 @@ import {MarqueeDemo} from "@/components/homeScreenSlideShow"
 
 export default function Home() {
   return (
-    <>
-    <div className="min-h-screen">
-    <MarqueeDemo/>
-
-    <Features></Features>
+    <div className="min-h-screen py-16 flex flex-col px-8 rounded-xl">
+      <MarqueeDemo/>
+      <Features/>
     </div>
-   
-    </>
   );
 }

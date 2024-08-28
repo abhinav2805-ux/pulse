@@ -26,6 +26,10 @@ const Navbar: React.FC = () => {
     setIsSidebarOpen(false);
   };
 
+  const getLinkHref = (item: string): string => {
+    return item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`;
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white text-blue-800 shadow-md' : 'bg-transparent text-black'
@@ -35,11 +39,11 @@ const Navbar: React.FC = () => {
           Harvestra
         </Link>
         <div className="hidden md:flex space-x-1">
-          {['Home', 'Features', 'Contact', 'About Us'].map((item) => (
+          {['Home', 'Features', 'About Us'].map((item) => (
             <Link 
               key={item} 
-              href={`/${item.toLowerCase().replace(' ', '-')}`} 
-              className="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 hover:text-white transition-colors duration-300"
+              href={getLinkHref(item)} 
+              className="px-3 py-2 rounded-md text-md font-medium hover:bg-blue-700 hover:text-white transition-colors duration-300"
             >
               {item}
             </Link>
@@ -74,10 +78,10 @@ const Navbar: React.FC = () => {
               </Button>
             </div>
             <nav className="flex flex-col space-y-4 p-4">
-              {['Home', 'Features', 'Contact', 'about'].map((item) => (
+              {['Home', 'Features', 'About Us'].map((item) => (
                 <Link 
                   key={item}
-                  href={`/${item.toLowerCase().replace(' ', '-')}`} 
+                  href={getLinkHref(item)}
                   className="text-blue-800 hover:bg-blue-100 px-3 py-2 rounded-md transition-colors duration-300" 
                   onClick={closeSidebar}
                 >
