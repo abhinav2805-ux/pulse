@@ -12,6 +12,7 @@ import {
     Legend,
 } from 'chart.js';
 import Data from "@/constants/testData";
+import { Separator } from './ui/separator';
 
 // Register the components with Chart.js
 ChartJS.register(
@@ -85,11 +86,13 @@ const RealTimeGraph: React.FC = () => {
     };
 
     return (
-        <div>
-            <h2>Real-Time Graph</h2>
-            <Line data={humidity} />
-            <Line data={temp} />
-            <Line data={price} />
+        <div className='mx-auto my-auto px-16 py-8'>
+            <h2 className='text-center text-2xl font-semibold'>Real-Time Graph</h2>
+                <Line  data={humidity} />
+                <Separator/>
+                <Line data={temp} />
+                <Separator/>
+                <Line data={price} />
         </div>
     );
 };
