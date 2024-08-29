@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -12,9 +12,7 @@ import {
     Legend,
 } from 'chart.js';
 import Data from "@/constants/testData";
-import { Separator } from './ui/separator';
 
-// Register the components with Chart.js
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -47,7 +45,7 @@ const RealTimeGraph: React.FC = () => {
     }, [currentIndex]);
 
     const humidity = {
-        labels: humidityData.map((_, index) => `Point ${index + 1}`),
+        labels: humidityData.map((_, index) => `Day ${index + 1}`),
         datasets: [
             {
                 label: 'Predicted Humidity',
@@ -55,12 +53,16 @@ const RealTimeGraph: React.FC = () => {
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,0.4)',
                 borderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#22c55e',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor:' #22c55e',
             },
         ],
     };
 
     const temp = {
-        labels: temperatureData.map((_, index) => `Point ${index + 1}`),
+        labels: temperatureData.map((_, index) => `Day ${index + 1}`),
         datasets: [
             {
                 label: 'Predicted Temperature',
@@ -68,12 +70,16 @@ const RealTimeGraph: React.FC = () => {
                 fill: false,
                 backgroundColor: 'rgba(54,162,235,0.4)',
                 borderColor: 'rgba(54,162,235,1)',
+                pointBackgroundColor: '#3b82f6',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#3b82f6',
             },
         ],
     };
 
     const price = {
-        labels: pricesData.map((_, index) => `Point ${index + 1}`),
+        labels: pricesData.map((_, index) => `Day ${index + 1}`),
         datasets: [
             {
                 label: 'Predicted Prices',
@@ -81,18 +87,59 @@ const RealTimeGraph: React.FC = () => {
                 fill: false,
                 backgroundColor: 'rgba(255,99,132,0.4)',
                 borderColor: 'rgba(255,99,132,1)',
+                pointBackgroundColor: '#eab308',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#eab308',
             },
         ],
     };
 
+    const optionsHumidity = {
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: 'Humidity (g/kg)',
+                },
+            },
+        },
+    };
+
+    const optionsTemp = {
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: 'Temperature (°C)',
+                },
+            },
+        },
+    };
+
+    const optionsPrice = {
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: 'Price (Rupees)',
+                },
+            },
+        },
+    };
+
     return (
-        <div className='mx-auto my-auto px-16 py-8'>
-            <h2 className='text-center text-2xl font-semibold'>Real-Time Graph</h2>
-                <Line  data={humidity} />
-                <Separator/>
-                <Line data={temp} />
-                <Separator/>
-                <Line data={price} />
+        <div className='mx-auto my-auto px-4 py-8 flex flex-col gap-8 bg-gray-100 rounded-xl'>
+            <h2 className='text-left text-2xl font-semibold'>Real-Time Graph For Price Analysis Of Paddy</h2>
+                <div className='bg-white p-4 rounded-lg shadow-md'>
+                    <Line data={humidity} options={optionsHumidity} />
+                </div>
+                <div className='bg-white p-4 rounded-lg shadow-md'>
+                    <Line data={temp} options={optionsTemp} />
+                </div>
+                <div className='bg-white p-4 rounded-lg shadow-md'>
+                    <Line data={price} options={optionsPrice} />
+                </div>
         </div>
     );
 };

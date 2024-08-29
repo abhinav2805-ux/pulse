@@ -10,7 +10,7 @@ import { Separator } from './ui/separator'
 function FAQ() {
   return (
     <div className='flex flex-col justify-evenly items-center space-y-8 py-8'>
-        <h1 className='text-5xl font-semibold w-[50%] text-zinc-500'>Frequently Asked Questions</h1>
+        <h1 className='text-3xl md:text-5xl font-semibold w-[50%] text-zinc-500 '>Frequently Asked Questions</h1>
         <Separator className='w-[75%] font-bold'/>
         <Accordion type="single" collapsible className="w-[75%]">
             <AccordionItem value="item-1">
