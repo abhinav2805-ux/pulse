@@ -14,7 +14,7 @@ function FeaturedCard(props:featureProps) {
     })
     
   return (
-    <div className={`flex ${dir=="0"?'flex-row':'flex-row-reverse'} h-1/4 justify-around flex-wrap md:mt-4 md:mb-5 mt-2 mb-2 bg-gray-200`}>
+    <div className={`flex ${dir=="0"?'flex-row':'flex-row-reverse'} h-1/4 justify-around rounded-lg items-center flex-wrap md:mt-4 md:mb-5 mt-2 mb-2 bg-gray-200`}>
         
         <div className='text-black p-5 text-lg md:text-xl md:w-[60%] h-full font-medium font-sans'>
         <p className='text-2xl font-extrabold mb-3 underline text-blue-800'>
