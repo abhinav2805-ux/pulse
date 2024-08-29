@@ -2,4 +2,6 @@
 humidity_model.pkl
 price_pred_model.pkl
 temperature_model.pkl
+temperature_model.joblib
+humidity_model.joblib
 .env
