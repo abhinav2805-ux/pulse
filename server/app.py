@@ -10,6 +10,7 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 import sklearn
+from flask_cors import CORS
 print(sklearn.__version__)
 
 from datetime import timedelta
@@ -17,6 +18,7 @@ from joblib import load
 # import matplotlib.pyplot as plt
 # from matplotlib.animation import FuncAnimation
 # Define your API URL, city, and API key
+CORS(app)
 load_dotenv()
 
 api_url = "http://api.openweathermap.org/data/2.5/weather"
@@ -106,18 +108,21 @@ def update_predictions(actual_temp, actual_humidity, start_date, days=30):
         
     return predicted_temp, predicted_humidity
 
-
 @app.route('/')
-def home():
+def index():
+    return "<h1>Hello world</h1>"
+
+@app.route('/api/Rice/<date>/<int:days>')
+def home(date,days):
     #actual_temp,  actual_humidity = get_temperature_and_humidity()
     actual_temp=20.5
     actual_humidity=10.5
     with open('price_pred_model.pkl', 'rb') as f:
         model_price = pickle.load(f)
-    start_date = pd.to_datetime('2023-08-01')
-    predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date)
+    start_date = pd.to_datetime(date)
+    predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date, days)
     predicted_prices = []
-    #pred_price=predict_rice_price(model_price, actual_temp, actual_humidity)
+    pred_price=predict_rice_price(model_price, actual_temp, actual_humidity)
     for i in range(len(predicted_temp)) :
     # y.append(predicted_temp[i])
     # ax.plot(x[:i+1], y, color='g')
@@ -132,7 +137,7 @@ def home():
     # y2.append(predicted_price)
     # ax2.plot(x[:i+1], y2, color='r')
     # fig2.canvas.draw()
-    
+    #return "hit"
     #time.sleep(5)
     return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
 
