@@ -2,14 +2,16 @@
 
 import React from 'react'
 import Link from 'next/link'
-import RealTimeGraph from '../../../components/Graph'
+import RealTimeGraph from '../../../components/lineGraph'
+import { Separator } from '@/components/ui/separator'
 
 function Features() {
   return (
     <div className='w-full min-h-screen py-8 px-8 space-y-8'>
       <h1 className='font-semibold text-center scroll-m-20 text-4xl mb-8'>F.E.A.T.U.R.E.S</h1>
       <RealTimeGraph />
-      
+      <Separator />
+
       <div className='mt-12 text-center'>
         <h2 className='text-2xl font-semibold mb-4'>Comprehensive Price Monitoring Network</h2>
         <p className='mb-6 text-lg'>

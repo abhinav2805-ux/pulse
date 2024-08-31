@@ -1,0 +1,20 @@
+{
+    "faqs": [
+      {
+        "question": "How does the AI-powered predictive analytics improve upon the current ARIMA model for forecasting prices?",
+        "answer": "Our AI system integrates multiple data sources beyond just historical price trends. It considers factors such as weather patterns, global market fluctuations, and local production estimates to provide more accurate and nuanced predictions. This allows for earlier detection of potential price spikes and more targeted interventions."
+      },
+      {
+        "question": "What measures are in place to ensure the security and integrity of data collected from the 550 price reporting centers?",
+        "answer": "Our system employs end-to-end encryption for data transmission and implements strict access controls. Regular audits and blockchain technology are used to maintain data integrity. Additionally, we've incorporated anomaly detection algorithms to flag any suspicious data inputs for immediate review."
+      },
+      {
+        "question": "How does the Smart Buffer Stock Manager determine the optimal timing and quantity for market interventions?",
+        "answer": "The Smart Buffer Stock Manager uses a combination of real-time market data, predictive analytics, and optimization algorithms. It considers factors such as current stock levels, predicted demand, storage costs, and potential price impacts. The system provides recommendations for interventions that maximize market stability while minimizing costs and potential waste."
+      },
+      {
+        "question": "Can this system adapt to sudden, unforeseen events that might impact food prices, such as natural disasters or global pandemics?",
+        "answer": "Yes, our system is designed with adaptability in mind. It continuously learns from new data and can quickly adjust its models in response to unexpected events. We've also incorporated a scenario planning tool that allows policymakers to simulate various crisis situations and test different intervention strategies, enhancing preparedness for unforeseen circumstances."
+      }
+    ]
+  }
