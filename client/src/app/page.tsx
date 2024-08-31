@@ -1,6 +1,6 @@
 "use client"
 import Features from "@/components/Features";
-import FAQ from "@/components/faq";
+import FAQ from "@/components/FAQ";
 import Carousel from "@/components/carousel";
 import India from "@react-map/india";
 export default function Home() {
