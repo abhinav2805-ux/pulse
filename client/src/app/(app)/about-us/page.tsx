@@ -9,11 +9,11 @@ import teamMembers from '@/constants/team';
 
 const AboutUs = () => {
   return (
-    <div className="bg-white py-12 mt-8">
+    <div className="bg-white py-12  bg-dot-black/[0.2]">
       <div className="container mx-auto px-4">
         
         <TypingAnimation
-        className="text-4xl font-bold text-black text-center dark:text-white"
+        className="text-4xl font-bold mt-4 text-black text-center dark:text-white"
         text="HARVESTRA"
         />
         <section className="mb-12">

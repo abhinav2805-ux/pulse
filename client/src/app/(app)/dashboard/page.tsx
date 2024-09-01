@@ -35,12 +35,24 @@ const Dropdown: React.FC = () => {
   const [value, setValue] = useState(1);
   const [showCalendar, setShowCalendar] = useState(false);
   const [data, setData] = useState<{ predicted_prices: number[], predicted_humidity: number[], predicted_temperature: number[] } | null>(null);
-  const [days, setDays] = useState<number>(0); // Add this state
+  const [days, setDays] = useState<number>(0);
+  const [showTable, setShowTable] = useState(true); //initialy table show hogi , button dabane pr hide 
+  const [loading, setLoading] = useState(false);
 
   const daysOptions = Array.from({ length: 31 }, (_, i) => i + 1);
   const weeksOptions = Array.from({ length: 10 }, (_, i) => i + 1);
   const monthsOptions = Array.from({ length: 12 }, (_, i) => i + 1);
   const yearsOptions = Array.from({ length: 7 }, (_, i) => i + 1);
+
+  //reset ka function
+  const handleReset = () => {
+    setSelectedCommodity("");
+    setSelectedDate(undefined);
+    setUnit("days");
+    setValue(1);
+    setData(null);
+    setDays(0);
+  };
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
@@ -55,6 +67,8 @@ const Dropdown: React.FC = () => {
       return;
     }
 
+    setLoading(true); 
+
     const computedDays = convertToDays(unit, value); // Compute days here
     setDays(computedDays); // Store the computed days in state
     const formattedDate = selectedDate.toISOString().split('T')[0];
@@ -66,19 +80,23 @@ const Dropdown: React.FC = () => {
         throw new Error("Network response was not ok");
       }
       const fetchedData = await response.json();
-      console.log(fetchedData);
-      setData(fetchedData); // Store the fetched data in state
+
+      setTimeout(() => {
+        setData(fetchedData); 
+        setLoading(false); 
+      }, 1500); //1.5 second baad  loading false krdo or render krwado 
     } catch (error) {
+      
       console.error("Fetch error:", error);
+      
+      setLoading(false); //loading puri hogyi to false 
     }
   };
 
   return (
     <>
       <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 pt-[100px] ">
-        {/* Form Fields */}
         <div className="flex flex-wrap gap-6 max-w-4xl w-full">
-          {/* Commodity Dropdown */}
           <div className="flex-1 min-w-[200px]">
             <label className="block text-sm font-medium text-gray-700">
               Select Commodity
@@ -87,6 +105,7 @@ const Dropdown: React.FC = () => {
               title="commodity"
               value={selectedCommodity}
               onChange={(e) => setSelectedCommodity(e.target.value)}
+              required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             >
               <option value="">Select a commodity</option>
@@ -163,16 +182,46 @@ const Dropdown: React.FC = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
-        <div className="mt-4">
-          <button
+        
+        <div className="mt-4 flex gap-4">
+        <button
             type="submit"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            disabled={loading}
+            className={`inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white ${
+              loading ? "bg-gray-400 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700"
+            } shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
           >
             Submit
+        </button>
+          {/* reset button lagaya hai taki input clear hojaye */}
+          <button
+            type="button"
+            onClick={handleReset}
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-red-600 shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          >
+            Reset
           </button>
         </div>
       </form>
+
+      {loading && (
+        <div className="flex justify-center mt-4">
+          <span className="loading loading-infinity loading-lg"></span>
+        </div>
+      )}
+
+
+      {/* agar data hai to table dikhani hai ya nahi */}
+      {data && (
+        <div className="mt-4 flex justify-center">
+          <button
+            onClick={() => setShowTable(!showTable)}
+            className="px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-green-600 shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+          >
+            {showTable ? "Hide Table" : "Show Table"}
+          </button>
+        </div>
+      )}         
 
       {/* Render the RealTimeGraph component only if data is available */}
       {data && (
@@ -185,6 +234,7 @@ const Dropdown: React.FC = () => {
           predicted_prices={data.predicted_prices}
           predicted_humidity={data.predicted_humidity}
           predicted_temperature={data.predicted_temperature}
+          showTable={showTable}
         />
       )}
     </>

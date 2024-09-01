@@ -55,8 +55,8 @@ export default function OlaTest() {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-200 py-16 px-4 sm:px-6 lg:px-8 ">
-            <div className="max-w-7xl mx-auto">
+        <div className="min-h-screen  bg-gradient-to-b from-blue-100 to-blue-200 py-16 px-4 sm:px-6 lg:px-8 ">
+            <div className="max-w-7xl mx-auto ">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6">
                         Essential Commodities Price Monitoring

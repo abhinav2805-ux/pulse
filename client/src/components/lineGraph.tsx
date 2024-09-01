@@ -31,9 +31,10 @@ interface DataInterface {
     predicted_humidity: number[];
     predicted_prices: number[];
     predicted_temperature: number[];
+    showTable: boolean;
 }
 
-const RealTimeGraph: React.FC<DataInterface> = ({ name,days, startDate, selectType, noofunits, predicted_prices, predicted_humidity, predicted_temperature }) => {
+const RealTimeGraph: React.FC<DataInterface> = ({ name,days, startDate, selectType, noofunits, predicted_prices, predicted_humidity, predicted_temperature,showTable }) => {
     const [humidityData, setHumidityData] = useState<number[]>([]);
     const [pricesData, setPricesData] = useState<number[]>([]);
     const [temperatureData, setTemperatureData] = useState<number[]>([]);
@@ -152,7 +153,7 @@ const RealTimeGraph: React.FC<DataInterface> = ({ name,days, startDate, selectTy
         const startDate = new Date(startDateStr);
         const dates = [];
         
-        for (let i = 0; i < noOfUnits; i++) {
+        for (let i = 0; i < days; i++) {
             const date = new Date(startDate);
             switch (selectType) {
                 case 'days':
@@ -186,24 +187,26 @@ const RealTimeGraph: React.FC<DataInterface> = ({ name,days, startDate, selectTy
             <div className='bg-white p-4 rounded-lg shadow-md w-full max-w-6xl md:h-[500px]'>
                 <Line data={price} options={optionsPrice} />
             </div>
-            <table className='mt-4 w-full max-w-6xl bg-white border border-gray-200 rounded-lg shadow-md'>
-                <thead>
-                    <tr className='bg-gray-100'>
-                        <th className='p-2 text-left'>Serial No</th>
-                        <th className='p-2 text-left'>Date</th>
-                        <th className='p-2 text-left'>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {pricesData.map((price, index) => (
-                        <tr key={index}>
-                            <td className='p-2'>{index + 1}</td>
-                            <td className='p-2'>{dates[index]}</td>
-                            <td className='p-2'>{price.toFixed(2)}</td>
+            {showTable && ( // Add this condition
+                <table className='mt-4 w-full max-w-6xl bg-white border border-gray-200 rounded-lg shadow-md'>
+                    <thead>
+                        <tr className='bg-gray-100'>
+                            <th className='p-2 text-left'>Serial No</th>
+                            <th className='p-2 text-left'>Date</th>
+                            <th className='p-2 text-left'>Price</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {pricesData.map((price, index) => (
+                            <tr key={index}>
+                                <td className='p-2'>{index + 1}</td>
+                                <td className='p-2'>{dates[index]}</td>
+                                <td className='p-2'>{price.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
             <button
                 className='self-center mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg'
                 onClick={() => setShowExtraGraphs((prev) => !prev)}

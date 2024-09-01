@@ -7,10 +7,9 @@ import Dropdown from '../dashboard/page'
 
 function Features() {
   return (
-    <div className='w-full min-h-screen py-8 px-8 space-y-8'>
-      <h1 className='font-semibold text-center scroll-m-20 text-4xl mb-8'>F.E.A.T.U.R.E.S</h1>
-     <Dropdown/>
-     
+    <div className='w-full min-h-screen py-8 px-8  bg-dot-black/[0.2] space-y-8'>
+      <h1 className='font-semibold text-center scroll-m-20 text-4xl   my-4'>F.E.A.T.U.R.E.S</h1>
+      <Dropdown/>
       <Separator />
 
       <div className='mt-12 text-center'>
