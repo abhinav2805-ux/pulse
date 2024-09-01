@@ -139,7 +139,8 @@ def home(date,days):
     # fig2.canvas.draw()
     #return "hit"
     #time.sleep(5)
-    return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+    #return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+    return jsonify({"commodity":"Rice","predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
 
 if __name__=='__main__':
     app.run(host='0.0.0.0',debug=True)

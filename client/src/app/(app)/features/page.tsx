@@ -11,7 +11,7 @@ function Features() {
     <div className='w-full min-h-screen py-8 px-8 space-y-8'>
       <h1 className='font-semibold text-center scroll-m-20 text-4xl mb-8'>F.E.A.T.U.R.E.S</h1>
      <Dropdown/>
-      {/* <RealTimeGraph /> */}
+     
       <Separator />
 
       <div className='mt-12 text-center'>
