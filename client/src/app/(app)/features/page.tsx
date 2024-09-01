@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Link from 'next/link'
-import RealTimeGraph from '../../../components/lineGraph'
 import { Separator } from '@/components/ui/separator'
 import Dropdown from '../dashboard/page'
 

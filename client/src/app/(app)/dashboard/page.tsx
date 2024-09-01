@@ -2,31 +2,8 @@
 import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import RealTimeGraph from "@/components/lineGraph";
+import commodities from "@/constants/commodities";
 
-const commodities = [
-  "Rice",
-  "Wheat",
-  "Atta",
-  "Gram Dal",
-  "Tur (Arhar) Dal",
-  "Urad Dal",
-  "Moong Dal",
-  "Masur Dal",
-  "Sugar",
-  "Gur",
-  "Groundnut Oil",
-  "Mustard Oil",
-  "Vanaspati",
-  "Sunflower Oil",
-  "Soya Oil",
-  "Palm Oil",
-  "Tea",
-  "Milk",
-  "Potato",
-  "Onion",
-  "Tomato",
-  "Salt",
-];
 
 const convertToDays = (unit: "days" | "weeks" | "months" | "years", value: number): number => {
   switch (unit) {
@@ -107,6 +84,7 @@ const Dropdown: React.FC = () => {
               Select Commodity
             </label>
             <select
+              title="commodity"
               value={selectedCommodity}
               onChange={(e) => setSelectedCommodity(e.target.value)}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -127,6 +105,7 @@ const Dropdown: React.FC = () => {
             </label>
             <div className="relative">
               <input
+                title="date"
                 type="text"
                 readOnly
                 value={formatDate(selectedDate)}
@@ -152,6 +131,7 @@ const Dropdown: React.FC = () => {
               Select Unit Type
             </label>
             <select
+              title="timeframe"
               value={unit}
               onChange={(e) => setUnit(e.target.value as "days" | "weeks" | "months" | "years")}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -169,6 +149,7 @@ const Dropdown: React.FC = () => {
               Number of {unit.charAt(0).toUpperCase() + unit.slice(1)}
             </label>
             <select
+              title="number of unit"
               value={value}
               onChange={(e) => setValue(Number(e.target.value))}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"

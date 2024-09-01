@@ -1,0 +1,26 @@
+const commodities = [
+    "Rice",
+    "Wheat",
+    "Atta",
+    "Gram Dal",
+    "Tur (Arhar) Dal",
+    "Urad Dal",
+    "Moong Dal",
+    "Masur Dal",
+    "Sugar",
+    "Gur",
+    "Groundnut Oil",
+    "Mustard Oil",
+    "Vanaspati",
+    "Sunflower Oil",
+    "Soya Oil",
+    "Palm Oil",
+    "Tea",
+    "Milk",
+    "Potato",
+    "Onion",
+    "Tomato",
+    "Salt",
+];
+
+export default commodities;
