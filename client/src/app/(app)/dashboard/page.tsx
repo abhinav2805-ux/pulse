@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import RealTimeGraph from "@/components/lineGraph"
+import RealTimeGraph from "@/components/lineGraph";
 
 const commodities = [
   "Rice",
@@ -25,19 +25,19 @@ const commodities = [
   "Potato",
   "Onion",
   "Tomato",
-  "Salt"
+  "Salt",
 ];
 
-const convertToDays = (unit: string, value: number): number => {
+const convertToDays = (unit: "days" | "weeks" | "months" | "years", value: number): number => {
   switch (unit) {
     case "weeks":
       return value * 7;
     case "months":
-      return Math.round(value * 30.44); 
+      return Math.round(value * 30.44);
     case "years":
       return Math.round(value * 365.25);
     default:
-      return value; 
+      return value;
   }
 };
 
@@ -52,12 +52,13 @@ const formatDate = (date: Date | undefined): string => {
 };
 
 const Dropdown: React.FC = () => {
-  const [selectedCommodity, setSelectedCommodity] = useState("");
+  const [selectedCommodity, setSelectedCommodity] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [unit, setUnit] = useState("days");
+  const [unit, setUnit] = useState<"days" | "weeks" | "months" | "years">("days");
   const [value, setValue] = useState(1);
   const [showCalendar, setShowCalendar] = useState(false);
   const [data, setData] = useState<{ predicted_prices: number[], predicted_humidity: number[], predicted_temperature: number[] } | null>(null);
+  const [days, setDays] = useState<number>(0); // Add this state
 
   const daysOptions = Array.from({ length: 31 }, (_, i) => i + 1);
   const weeksOptions = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -71,15 +72,16 @@ const Dropdown: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+
     if (!selectedDate) {
       console.error("Date not selected");
       return;
     }
 
-    const days = convertToDays(unit, value);
-    const formattedDate = selectedDate.toISOString().split('T')[0]; 
-    const url = `http://127.0.0.1:5000/api/${selectedCommodity}/${formattedDate}/${days}`;
+    const computedDays = convertToDays(unit, value); // Compute days here
+    setDays(computedDays); // Store the computed days in state
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+    const url = `http://127.0.0.1:5000/api/${selectedCommodity}/${formattedDate}/${computedDays}`;
 
     try {
       const response = await fetch(url);
@@ -151,7 +153,7 @@ const Dropdown: React.FC = () => {
             </label>
             <select
               value={unit}
-              onChange={(e) => setUnit(e.target.value)}
+              onChange={(e) => setUnit(e.target.value as "days" | "weeks" | "months" | "years")}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             >
               <option value="days">Days</option>
@@ -194,6 +196,11 @@ const Dropdown: React.FC = () => {
       {/* Render the RealTimeGraph component only if data is available */}
       {data && (
         <RealTimeGraph
+          name={selectedCommodity}
+          days={days}
+          startDate={selectedDate ? formatDate(selectedDate) : ''}
+          selectType={unit}
+          noofunits={value}
           predicted_prices={data.predicted_prices}
           predicted_humidity={data.predicted_humidity}
           predicted_temperature={data.predicted_temperature}
