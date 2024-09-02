@@ -137,7 +137,7 @@ const Dropdown: React.FC = () => {
                     mode="single"
                     selected={selectedDate}
                     onSelect={handleDateSelect}
-                    className="rounded-md border"
+                    className="rounded-md border bg-white"
                   />
                 </div>
               )}

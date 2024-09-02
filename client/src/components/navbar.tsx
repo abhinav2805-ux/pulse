@@ -62,6 +62,7 @@ const Navbar: React.FC = () => {
             )}
           </svg>
         </Button>
+        
       </div>
 
       {isSidebarOpen && (
