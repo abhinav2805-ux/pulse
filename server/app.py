@@ -113,7 +113,7 @@ def index():
     return "<h1>Hello world</h1>"
 
 @app.route('/api/Rice/<date>/<int:days>')
-def home(date,days):
+def Rice(date,days):
     #actual_temp,  actual_humidity = get_temperature_and_humidity()
     actual_temp=20.5
     actual_humidity=10.5
@@ -122,7 +122,7 @@ def home(date,days):
     start_date = pd.to_datetime(date)
     predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date, days)
     predicted_prices = []
-    pred_price=predict_rice_price(model_price, actual_temp, actual_humidity)
+   ## pred_price=predict_rice_price(rice_model_price, actual_temp, actual_humidity)
     for i in range(len(predicted_temp)) :
     # y.append(predicted_temp[i])
     # ax.plot(x[:i+1], y, color='g')
@@ -141,6 +141,131 @@ def home(date,days):
     #time.sleep(5)
     #return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
     return jsonify({"commodity":"Rice","predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+
+
+@app.route('/api/Wheat/<date>/<int:days>')
+def Wheat(date,days):
+    #actual_temp,  actual_humidity = get_temperature_and_humidity()
+    actual_temp=20.5
+    actual_humidity=10.5
+    with open('wheat_price_model.joblib', 'rb') as f:
+        model_price = load(f)
+    start_date = pd.to_datetime(date)
+    predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date, days)
+    predicted_prices = []
+   ## pred_price=predict_rice_price(rice_model_price, actual_temp, actual_humidity)
+    for i in range(len(predicted_temp)) :
+    # y.append(predicted_temp[i])
+    # ax.plot(x[:i+1], y, color='g')
+    # fig.canvas.draw()
+    
+    # y1.append(predicted_humidity[i])
+    # ax1.plot(x[:i+1], y1, color='b')
+    # fig1.canvas.draw()
+    
+        predicted_price = predict_rice_price(model_price, predicted_temp[i], predicted_humidity[i])
+        predicted_prices.append(predicted_price) 
+    # y2.append(predicted_price)
+    # ax2.plot(x[:i+1], y2, color='r')
+    # fig2.canvas.draw()
+    #return "hit"
+    #time.sleep(5)
+    #return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+    return jsonify({"commodity":"Wheat","predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+
+
+
+
+@app.route('/api/Potato/<date>/<int:days>')
+def Potato(date,days):
+    #actual_temp,  actual_humidity = get_temperature_and_humidity()
+    actual_temp=20.5
+    actual_humidity=10.5
+    with open('potato_price_model.joblib', 'rb') as f:
+        model_price = load(f)
+    start_date = pd.to_datetime(date)
+    predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date, days)
+    predicted_prices = []
+   ## pred_price=predict_rice_price(rice_model_price, actual_temp, actual_humidity)
+    for i in range(len(predicted_temp)) :
+    # y.append(predicted_temp[i])
+    # ax.plot(x[:i+1], y, color='g')
+    # fig.canvas.draw()
+    
+    # y1.append(predicted_humidity[i])
+    # ax1.plot(x[:i+1], y1, color='b')
+    # fig1.canvas.draw()
+    
+        predicted_price = predict_rice_price(model_price, predicted_temp[i], predicted_humidity[i])
+        predicted_prices.append(predicted_price) 
+    # y2.append(predicted_price)
+    # ax2.plot(x[:i+1], y2, color='r')
+    # fig2.canvas.draw()
+    #return "hit"
+    #time.sleep(5)
+    #return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+    return jsonify({"commodity":"Potato","predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+
+
+@app.route('/api/Onion/<date>/<int:days>')
+def Onion(date,days):
+    #actual_temp,  actual_humidity = get_temperature_and_humidity()
+    actual_temp=20.5
+    actual_humidity=10.5
+    with open('onion_price_model.joblib', 'rb') as f:
+        model_price = load(f)
+    start_date = pd.to_datetime(date)
+    predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date, days)
+    predicted_prices = []
+   ## pred_price=predict_rice_price(rice_model_price, actual_temp, actual_humidity)
+    for i in range(len(predicted_temp)) :
+    # y.append(predicted_temp[i])
+    # ax.plot(x[:i+1], y, color='g')
+    # fig.canvas.draw()
+    
+    # y1.append(predicted_humidity[i])
+    # ax1.plot(x[:i+1], y1, color='b')
+    # fig1.canvas.draw()
+    
+        predicted_price = predict_rice_price(model_price, predicted_temp[i], predicted_humidity[i])
+        predicted_prices.append(predicted_price) 
+    # y2.append(predicted_price)
+    # ax2.plot(x[:i+1], y2, color='r')
+    # fig2.canvas.draw()
+    #return "hit"
+    #time.sleep(5)
+    #return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+    return jsonify({"commodity":"Onion","predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+
+@app.route('/api/Salt/<date>/<int:days>')
+def Salt(date,days):
+    #actual_temp,  actual_humidity = get_temperature_and_humidity()
+    actual_temp=20.5
+    actual_humidity=10.5
+    with open('namak_price_model.joblib', 'rb') as f:
+        model_price = load(f)
+    start_date = pd.to_datetime(date)
+    predicted_temp, predicted_humidity = update_predictions(actual_temp, actual_humidity, start_date, days)
+    predicted_prices = []
+   ## pred_price=predict_rice_price(rice_model_price, actual_temp, actual_humidity)
+    for i in range(len(predicted_temp)) :
+    # y.append(predicted_temp[i])
+    # ax.plot(x[:i+1], y, color='g')
+    # fig.canvas.draw()
+    
+    # y1.append(predicted_humidity[i])
+    # ax1.plot(x[:i+1], y1, color='b')
+    # fig1.canvas.draw()
+    
+        predicted_price = predict_rice_price(model_price, predicted_temp[i], predicted_humidity[i])
+        predicted_prices.append(predicted_price) 
+    # y2.append(predicted_price)
+    # ax2.plot(x[:i+1], y2, color='r')
+    # fig2.canvas.draw()
+    #return "hit"
+    #time.sleep(5)
+    #return jsonify({"predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
+    return jsonify({"commodity":"Salt","predicted_prices": predicted_prices,"predicted_temperature":predicted_temp,"predicted_humidity":predicted_humidity})
 
 if __name__=='__main__':
     app.run(host='0.0.0.0',debug=True)
