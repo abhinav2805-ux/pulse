@@ -4,4 +4,8 @@ price_pred_model.pkl
 temperature_model.pkl
 temperature_model.joblib
 humidity_model.joblib
+namak_price_model.joblib
+onion_price_model.joblib
+potato_price_model.joblib
+wheat_price_model.joblib
 .env
