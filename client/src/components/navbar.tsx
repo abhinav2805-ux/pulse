@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
           Harvestra
         </Link>
         <div className="hidden md:flex space-x-1">
-          {['Home', 'Features', 'About Us'].map((item) => (
+          {['Home', 'Features', 'About Us', 'Buffer-Stock'].map((item) => (
             <Link 
               key={item} 
               href={getLinkHref(item)} 
@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
               </Button>
             </div>
             <nav className="flex flex-col space-y-4 p-4">
-              {['Home', 'Features', 'About Us'].map((item) => (
+              {['Home', 'Features', 'About Us', 'Buffer-Stock'].map((item) => (
                 <Link 
                   key={item}
                   href={getLinkHref(item)}
